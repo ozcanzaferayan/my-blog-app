@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import { GetServerSideProps, type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
   console.log("SESSION", session);
   const redirectUrl = "/posts";
@@ -47,6 +47,6 @@ export async function getServerSideProps(context) {
   return {
     props: {},
   };
-}
+};
 
 export default Home;
